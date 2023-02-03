@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
-# from polls.views import *
+from polls.views import *
 
 # Create your views here.
 def login(request):
