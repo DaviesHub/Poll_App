@@ -1,0 +1,44 @@
+{% extends 'polls/raw_base.html' %}
+
+{% block title %}Register | {% endblock %}
+
+{% block content %}
+    <h2>Sign Up</h2>
+
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <form action="{% url 'user_auth:register' %}" method="post">
+    {% csrf_token %}
+        <div style="margin-bottom:20px;">
+            <label style="margin-right:20px;" for="">First name</label>
+            <input type="text" id="firstname" name="firstname" placeholder="Enter first name (Only letters allowed)">
+            <br>
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <label style="margin-right:20px;" for="">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter Username (Only letters and numbers allowed)">
+            <br>
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <label style="margin-right:20px;" for="">Password</label>
+            <input type="password" id="password1" name="password1" placeholder="Enter Password (Letters, numbers and special characters allowed)">
+            <br>
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <label style="margin-right:20px;" for="">Confirm Password</label>
+            <input type="password" id="password2" name="password2" placeholder="Confirm Password">
+            <br>
+        </div>
+
+        <input style="background-color:orange;"type="submit" label="Sign Up"/>
+    </form>
+{% endblock %}

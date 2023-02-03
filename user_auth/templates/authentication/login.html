@@ -1,0 +1,29 @@
+{% extends 'polls/raw_base.html' %}
+
+{% block title %}Login | {% endblock %}
+
+{% block content %}
+    <div style="margin-bottom: 50px;"><h2>Welcome to Polls App. Login as User or Sign up to start voting.</h2></div>
+
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <form action="{% url 'user_auth:authenticate_user' %}" method="post">
+        {% csrf_token %}
+
+        <label style="font-style:italic; font-weight:bold; margin-right:25px">Username</label>
+        <input type="text" name="username" placeholder="User" required>
+        <br/><br/>
+
+        <label style="font-style:italic; font-weight:bold; margin-right:25px">Password</label>
+        <input type="password" name="password" required>
+        <br/><br/>
+        
+        <input style="margin-top: 40px; background-color: orange;" type="submit" value="Login"/>
+    </form>
+{% endblock %}
