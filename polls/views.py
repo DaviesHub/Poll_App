@@ -10,10 +10,10 @@ def poll_index(request):
         context = {'latest_question_list': latest_question_list,
         "firstname": request.user.first_name,
         }
-        return render(request, "polls/poll.html", context)
+        return render(request, "polls/home.html", context)
     else:
         return HttpResponseRedirect(
-            reverse('user_auth:login')
+            reverse('user_auth:user_login')
         )
         
 def detail(request, question_id):
@@ -22,7 +22,7 @@ def detail(request, question_id):
         return render(request, 'polls/detail.html', {'question': question})
     else:
         return HttpResponseRedirect(
-            reverse('user_auth:login')
+            reverse('user_auth:user_login')
         )
 
 def results(request, question_id):
@@ -31,7 +31,7 @@ def results(request, question_id):
         return render(request, 'polls/results.html', {'question': question})
     else:
         return HttpResponseRedirect(
-            reverse('user_auth:login')
+            reverse('user_auth:user_login')
         )
 
 def vote(request, question_id):
@@ -55,6 +55,6 @@ def vote(request, question_id):
             )
     else:
         return HttpResponseRedirect(
-            reverse('user_auth:login')
+            reverse('user_auth:user_login')
         )
 

@@ -7,7 +7,7 @@ from django.contrib import messages
 from polls.views import *
 
 # Create your views here.
-def login(request):
+def user_login(request):
     return render(request, 'authentication/login.html')
 
 def authenticate_user(request):
@@ -17,7 +17,7 @@ def authenticate_user(request):
     if user is None:
         messages.error(request, 'Bad Credentials!')
         return HttpResponseRedirect(
-            reverse('user_auth:login')
+            reverse('user_auth:user_login')
         )
     else:
         login(request, user)
@@ -28,11 +28,9 @@ def authenticate_user(request):
 def home(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(
-            reverse('user_auth:login')
+            reverse('user_auth:user_login')
         )
-    return render(request, 'polls/poll.html', {
-        "username": request.user.username,
-    })
+    return render(request, 'polls/home.html')
 
 def register(request):
     if request.method == "POST":
@@ -55,7 +53,7 @@ def register(request):
 
         messages.success(request, "Your account has been created successfully!")
         return HttpResponseRedirect(
-            reverse('user_auth:login')
+            reverse('user_auth:user_login')
         )
 
     return render(request, 'authentication/register.html')
